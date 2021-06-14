@@ -236,19 +236,19 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 {{#isFile}}
 	localVarFormFileName = "{{baseName}}"
 {{#required}}
-	localVarFile := *r.{{paramName}}
+   {{paramName}} := *r.{{paramName}}
 {{/required}}
 {{^required}}
-	var localVarFile {{dataType}}
+	var {{paramName}} {{dataType}}
 	if r.{{paramName}} != nil {
-		localVarFile = *r.{{paramName}}
+		{{paramName}} = *r.{{paramName}}
 	}
 {{/required}}
-	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
+	if {{paramName}} != nil {
+		fbs, _ := _ioutil.ReadAll({{paramName}})
 		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+		localVarFileName = {{paramName}}.Name()
+		{{paramName}}.Close()
 	}
 {{/isFile}}
 {{^isFile}}
